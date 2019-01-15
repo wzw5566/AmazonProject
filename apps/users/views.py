@@ -67,3 +67,19 @@ class UserViewset(CreateModelMixin, mixins.UpdateModelMixin, mixins.RetrieveMode
 class RoleViewSet(CreateModelMixin,mixins.UpdateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
+
+
+def jwt_response_payload_handler(token, user=None, request=None):
+    """
+    登录成功后自定义返回
+    :param token:
+    :param user:
+    :param request:
+    :return:
+    """
+    return {
+    "code":20000,
+    "data": {
+        "token": "JWT "+ token
+    }
+    }

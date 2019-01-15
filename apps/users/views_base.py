@@ -13,13 +13,12 @@ def get_user_info(request):
         toke_user = jwt_decode_handler(token)
         user_id = toke_user["user_id"]
 
-        user_info = User.objects.get(pk= user_id)
+        user_info = User.objects.get(pk=user_id)
         serializer = UserDetailSerializer(user_info)
         data = {
 
             "data": serializer.data,
-            "code": 20000,
-            "message": "请求成功"
+            "code": 20000
         }
 
         return JsonResponse(data)
